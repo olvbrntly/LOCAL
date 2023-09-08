@@ -5,6 +5,7 @@
 
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -21,7 +22,7 @@ code {
 .header{
   display:flex;
   justify-content: space-between;
-  padding: 3em 2em 3em 2em
+  padding: 3em 2em 0 2em;
 
 }
 
@@ -42,16 +43,64 @@ code {
   background-color: white;
   border:none;
   padding: 10px;
-  margin-top: -75px;
+  margin-top: -50px;
   border-radius: 100px;
   font-size:20px;
   
 }
 
 .logo{
-  height:120px;
-  width:120px;
+  height:100px;
+  width:100px;
   border-radius: 100px;
   margin-top:-10px;
   
+}
+
+
+/*----------Homepage---------- */
+
+
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+ 
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(./components/images/hero_img.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  filter: brightness(45%);
+  margin-top: 0;
+}
+
+.hero-content {
+    position: relative; 
+    font-family: "Monserrat", sans-serif;
+    color: white;
+    text-align: center;
+    height:50%;
+    width:40%;
+    padding-top:200px;
+    padding-left: 5%;
+    
+}
+.hero-title {
+    font-size: 6rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.hero-text {
+    font-size: 1.5rem;
+    font-weight: 200;
+    margin-top: 1rem;
 }
