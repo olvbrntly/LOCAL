@@ -8,8 +8,9 @@ const businessSchema = new mongoose.Schema(
             required:true
         },
         address:{
-            type:String, //placeholder for now, will get changed to address schema
-            required:true
+            type:mongoose.SchemaType.ObjectId, //placeholder for now, will get changed to address schema
+            required:true,
+            ref:'Address'
         },
         description:{
             type:String,
