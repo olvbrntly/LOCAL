@@ -9,7 +9,7 @@ const Header = () =>{
     return(
         <div className='header'>
             <div className='logo'>
-                <img src={logo} alt='LOCAL logo' className='logo'></img>
+               <a href='http://localhost:3000/'> <img src={logo} alt='LOCAL logo' className='logo'></img> </a>
             </div>
 
             <div className='header-right'>
