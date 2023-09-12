@@ -129,7 +129,7 @@ code {
 
 /* ----------About---------- */
 
-.about{
+.about {
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -141,5 +141,21 @@ code {
 }
 
 .about p {
+  padding:0px 500px 0px 500px;
+}
+/* ----------Terms---------- */
+
+.terms {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.terms h1{
+  font-size:50px;
+  text-decoration: underline;
+}
+
+.terms p {
   padding:0px 500px 0px 500px;
 }
