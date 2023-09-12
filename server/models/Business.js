@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const typeURL = require('mongoose-type-url')
+const AddressSchema = require('./Address')
 
 const businessSchema = new mongoose.Schema(
     {
@@ -8,9 +9,7 @@ const businessSchema = new mongoose.Schema(
             required:true
         },
         address:{
-            type:mongoose.SchemaType.ObjectId, //placeholder for now, will get changed to address schema
-            required:true,
-            ref:'Address'
+            type: AddressSchema.schema
         },
         description:{
             type:String,
