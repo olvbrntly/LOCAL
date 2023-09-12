@@ -1,6 +1,6 @@
 const Homepage = () =>{
     return(
-        <div className="hero">
+        <div className=" hero content">
             <div className="hero-content">
 
                 
