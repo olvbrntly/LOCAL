@@ -7,8 +7,8 @@ const Footer = () => {
         <div className='footer'>
             <div className='footer-links'>
                 <a href='http://localhost:3000/about'>About</a>
-                <a href='http://localhost:3000/'>Contact</a>
-                <a href='http://localhost:3000/'>Terms and Conditions</a>
+                <a href='http://localhost:3000/contact'>Contact</a>
+                <a href='http://localhost:3000/terms'>Terms and Conditions</a>
             </div>
             <div className='social-media-links'>
                 <FontAwesomeIcon icon={faInstagram} />
