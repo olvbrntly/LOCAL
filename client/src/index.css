@@ -11,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: whitesmoke;
 }
 
 code {
@@ -40,7 +41,7 @@ code {
 }
 
 .user-button{
-  background-color: white;
+  background-color: whitesmoke;
   border:none;
   padding: 10px;
   margin-top: -50px;
@@ -103,4 +104,26 @@ code {
     font-size: 1.5rem;
     font-weight: 200;
     margin-top: 1rem;
+}
+
+
+/* ----------FOOTER---------- */
+
+.footer{
+  display:flex;
+  justify-content: space-between;
+  margin:10px 50px 10px 50px;
+}
+
+.footer-links a{
+  color:black;
+  margin-right: 20px;
+  text-decoration:none
+
+}
+
+.social-media-links{
+  display: flex;
+  gap:20px;
+  font-size:20px;
 }
