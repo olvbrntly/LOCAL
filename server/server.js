@@ -8,10 +8,9 @@ const cookieParser = require('cookie-parser');
 const connectDB = require('./config/DbConnection');
 const mongoose = require('mongoose');
 const { appendFile } = require('fs');
-const PORT = process.env.PORT || 3500
+const PORT = process.env.PORT || 5000
 
 connectDB();
-
 
 // lets app recieve and parse json data
 app.use(express.json())
@@ -20,5 +19,9 @@ app.use(express.json())
 app.use(cookieParser());   
 
 app.use('/', express.static(path.join(__dirname, '/public')));
-app.use('/business', require('/routes/userRoutes'))
+app.use('/business', require('./routes/businessRoutes'))
 
+mongoose.connection.once('open', () =>{
+    console.log('connected to mongodb')
+    app.listen(PORT,() => console.log(`Server running on port ${PORT}`))
+}) 
