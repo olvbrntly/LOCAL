@@ -50,9 +50,44 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
 // //@route PATCH /businesses
 // //@access Private
 
-// const editBusiness = asyncHandler(async(req,res) =>{
+const editBusiness = asyncHandler(async(req,res) =>{
+    const {id,name, description, priceRange, url, address, phoneNumber} = req.body;
+  
+    //make sure required fields are filled out
+    if(!name || !description || !priceRange || !id ){
+        return res.status(400).json({message:'fields required: name, description, priceRange'});
+    }
 
-// })
+    //Confirm business exists to update
+    const business = await Business.findById(id).exec();
+
+    if(!business){
+        return res.status(400).json({message:'No business found'})
+    }
+
+    //check for duplicate business
+    const duplicateBiz = await Business.findOne({name, description}).lean().exec();
+
+    if(duplicateBiz){
+        return res.status(409).json({message:'that business already exists'});
+    };
+
+     // Allow renaming of the original note 
+     if (duplicateBiz && duplicateBiz?._id.toString() !== id) {
+        return res.status(409).json({ message: 'Duplicate business name and description' })
+    }
+
+    business.name = name,
+    business.description = description,
+    business.priceRange = priceRange,
+    business.url = url,
+    business.address = address,
+    business.phoneNumber = phoneNumber
+
+    const updatedBusiness = await business.save(); //comes from the lean 
+
+    res.json({message:`${updatedBusiness.name} was updated`});
+})
 
 // //@desc Delete businesses
 // //@route DELETE /businesses
@@ -65,6 +100,6 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
 module.exports = {
     getAllBusinesses,
     createNewBusiness,
-    // editBusiness,
+    editBusiness,
     // deleteBusiness
 }
