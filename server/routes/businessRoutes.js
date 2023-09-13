@@ -5,7 +5,7 @@ const businessController = require('../controllers/businessController')
 router.route('/')
     .get(businessController.getAllBusinesses)
     .post(businessController.createNewBusiness)
-    // .patch(businessController.editBusiness)
+    .patch(businessController.editBusiness)
     // .delete(businessController.deleteBusiness)
 
 module.exports = router
