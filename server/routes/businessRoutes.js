@@ -6,6 +6,6 @@ router.route('/')
     .get(businessController.getAllBusinesses)
     .post(businessController.createNewBusiness)
     .patch(businessController.editBusiness)
-    // .delete(businessController.deleteBusiness)
+    .delete(businessController.deleteBusiness)
 
 module.exports = router
