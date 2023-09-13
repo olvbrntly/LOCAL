@@ -93,13 +93,30 @@ const editBusiness = asyncHandler(async(req,res) =>{
 // //@route DELETE /businesses
 // //@access Private
 
-// const deleteBusiness = asyncHandler(async(req,res) =>{
+const deleteBusiness = asyncHandler(async(req,res) =>{
+    const {id} = req.body;
 
-// })
+    //confirm id
+    if(!id){
+        return res.status(400).json({message:'id required'})
+    }
+
+    //Confirm business exists to delete
+    const business = await Business.findById(id).exec();
+
+    if(!business){
+        return res.status(400).json({message:'No business found'})
+    }
+
+    const result =  await business.deleteOne()
+
+    res.json(`business with id ${result.id} has been deleted`)
+
+})
 
 module.exports = {
     getAllBusinesses,
     createNewBusiness,
     editBusiness,
-    // deleteBusiness
+    deleteBusiness
 }
