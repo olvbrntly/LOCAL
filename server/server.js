@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const connectDB = require('./config/DbConnection');
 const mongoose = require('mongoose');
 const { appendFile } = require('fs');
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3500
 
 connectDB();
 
@@ -22,4 +22,4 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 app.use('/business', require('./routes/businessRoutes'))
 
 
-    app.listen(PORT,() => console.log(`Server running on port ${PORT}`));
+app.listen(PORT,() => console.log(`Server running on port ${PORT}`));
