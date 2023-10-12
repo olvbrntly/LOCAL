@@ -12,19 +12,26 @@ const BusinessesList = () =>{
         error
     } = useGetBusinessesQuery();
 
-    const businessIds = useSelector(selectBusinessIds)
-    console.log('----------')
-    console.log(businessIds)
 
     let content;
     if(isLoading){
         content = <p>Loading ...</p>
-    }else if(isSuccess){
-        const {ids} = businesses
-        content = ids?.length ? ids.map(businessId => <Business key={businessId} businessId={businessId}/>) : null
-    }else if(isError){
-        content = <p>{error.data.message}</p>
     }
+
+    if(isError){
+        content = <p>{error?.data?.message}</p>
+    }
+
+    if(isSuccess){
+        const {ids} = businesses
+         const businessList = ids?.length ? ids.map(id => <Business key={id} businessId={id}/>) : null
+
+         content = (
+            <div>{businessList}</div>
+        )
+    }
+   
+   
 
     return content
 }
