@@ -30,7 +30,7 @@ code {
 .header{
   display:flex;
   justify-content:space-between;
-  padding:3em 2em 0 2em;
+  padding:2em 2em 0 2em;
   grid-row:1/2;
 
 }
@@ -114,7 +114,7 @@ code {
   display:flex;
   justify-content: space-between;
   grid-row: 3/4;
-  padding:0px 1em 0px 1em;
+  padding:1em;
 
 
 }
