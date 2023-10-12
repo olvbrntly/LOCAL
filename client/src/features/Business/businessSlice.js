@@ -4,16 +4,14 @@ import {
 } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 
-const businessesAdapters = createEntityAdapter({
-    sortComparer:(a,b) => b.date.localeCompare(a.date)
-});
+const businessesAdapters = createEntityAdapter({});
 
 const initialState = businessesAdapters.getInitialState();
 
-export const businessApiSlice = apiSlice.injectEndpoints({
+export const businessesSlice = apiSlice.injectEndpoints({
     endpoints:builder =>({
         getBusinesses:builder.query({
-            query: () => '/businesses',
+            query: () => '/business',
             validateStatus:(response, result) =>{
                 return response.status === 200 && !result.isError
             },
@@ -27,10 +25,10 @@ export const businessApiSlice = apiSlice.injectEndpoints({
             providesTags:(result,error,arg) =>{
                 if(result?.ids) {
                     return [
-                        {type:'User', id:'LIST'},
+                        {type:'Business', id:'LIST'},
                         ...result.ids.map(id =>({type:'Business',id}))
                     ]
-                } else return [{type:'User', id:'LIST'}]
+                } else return [{type:'Business', id:'LIST'}]
             }
         })
     })
@@ -38,10 +36,10 @@ export const businessApiSlice = apiSlice.injectEndpoints({
 
 export const {
     useGetBusinessesQuery
-} = businessApiSlice;
+} = businessesSlice;
 
 //return query for entire result object
-export const selectBusinessesResult = businessApiSlice.endpoints.getBusinesses.select();
+export const selectBusinessesResult = businessesSlice.endpoints.getBusinesses.select();
 
 const selectBusinessesData = createSelector(
     selectBusinessesResult,
@@ -53,3 +51,5 @@ export const {
     selectIds: selectBusinessIds,
     selectById:selectBusinessById,
 } = businessesAdapters.getSelectors(state => selectBusinessesData(state) ?? initialState)
+
+export default businessesSlice.reducer
