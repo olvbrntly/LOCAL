@@ -75,19 +75,13 @@ code {
 
 /*---------- Homepage ---------- */
 
-.hero::before {
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+.hero {
+
   background:url(./components/images/hero_img.jpg);
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-position:center center;
-  filter:brightness(45%);
-  margin-top:0;
+  height: calc(20em + 20vw);
+	background-position: center;
+	background-size: cover;
+	position: relative;
 }
 
 .hero-content {
@@ -95,9 +89,9 @@ code {
     font-family:"Monserrat", sans-serif;
     color:white;
     text-align:center;
-    height:50%;
+    height:30%;
     width:40%;
-    padding-top:200px;
+    padding-top:1.5em;
     padding-left:5%;
     
 }
