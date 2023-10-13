@@ -33,71 +33,82 @@ const AddBusinessForm = () =>{
 
 
     return(
-        <Form>
+      <div className="add-business-form">
+      <h1>Add a New Business</h1>
+          <Form>
+          <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text" placeholder="Enter Business Name" onChange={onNameChanged} />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridWebsiteURL">
+            <Form.Label>Website Url</Form.Label>
+            <Form.Control type="url" placeholder="Website Url" />
+          </Form.Group>
+
+        </Row>
+
         <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter Business Name" onChange={onNameChanged} />
+          <Form.Group as={Col} controlId="formGridTagline">
+            <Form.Label>Tag Line</Form.Label>
+            <Form.Control type="text" placeholder="Description of business in 100 characters or less" />
+          </Form.Group>
+        </Row>
+
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridPhoneNumber">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control type="tel" placeholder="(555)-555-5555" />
+          </Form.Group>
+        </Row>
+
+
+        <Form.Group as={Col} controlId="formGridDescription">
+            <Form.Label>Description</Form.Label>
+            <Form.Control type="textarea" placeholder="Full Description of Business" onChange={onDescriptionChanged}/>
+          </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formGridAddress1">
+          <Form.Label>Address</Form.Label>
+          <Form.Control placeholder="1234 Main St" />
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Tag Line</Form.Label>
-          <Form.Control type="text" placeholder="Description of business in 100 characters or less" />
-        </Form.Group>
-      </Row>
-
-
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Description</Form.Label>
-          <Form.Control type="textarea" placeholder="Full Description of Business" onChange={onDescriptionChanged}/>
+        <Form.Group className="mb-3" controlId="formGridAddress2">
+          <Form.Label>Address 2</Form.Label>
+          <Form.Control placeholder="Apartment, studio, or floor" />
         </Form.Group>
 
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-        </Form.Group>
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>City</Form.Label>
+            <Form.Control />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Phone Number</Form.Label>
-          <Form.Control type="tel" placeholder="(555)-555-5555" />
-        </Form.Group>
-      </Row>
+          <Form.Group as={Col} controlId="formGridState">
+            <Form.Label>State</Form.Label>
+            <Form.Select defaultValue="Choose...">
+              <option>Choose...</option>
+              <option>...</option>
+            </Form.Select>
+          </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label>Address</Form.Label>
-        <Form.Control placeholder="1234 Main St" />
-      </Form.Group>
+          <Form.Group as={Col} controlId="formGridZip">
+            <Form.Label>Zip</Form.Label>
+            <Form.Control />
+          </Form.Group>
+        </Row>
 
-      <Form.Group className="mb-3" controlId="formGridAddress2">
-        <Form.Label>Address 2</Form.Label>
-        <Form.Control placeholder="Apartment, studio, or floor" />
-      </Form.Group>
-
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>City</Form.Label>
-          <Form.Control />
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>State</Form.Label>
-          <Form.Select defaultValue="Choose...">
-            <option>Choose...</option>
-            <option>...</option>
-          </Form.Select>
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridZip">
-          <Form.Label>Zip</Form.Label>
-          <Form.Control />
-        </Form.Group>
-      </Row>
-
-      <Button variant="primary" type="submit" onClick={onSaveBusinessClicked}>
-        Save Business
-      </Button>
-    </Form>
+        <Button variant="primary" type="submit" onClick={onSaveBusinessClicked}>
+          Save Business
+        </Button>
+      </Form>
+    </div>
     )
 }
 
