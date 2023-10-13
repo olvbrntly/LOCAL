@@ -9,20 +9,23 @@ const logo = require('./images/logo.png')
 const Header = () =>{
     return(
         <div className='header'>
+            
             <div className='logo'>
                <a href='http://localhost:3000/'> <img src={logo} alt='LOCAL logo' className='logo'></img> </a>
             </div>
 
            
             <div className='header-right'>
+
                 <a href='http://localhost:3000/'>Locations</a>
     
                 <CategoriesDropdown />
-                
+
                 <a href='http://localhost:3000/'>Login / Sign Up</a>
                 <button className='user-button'>
                     <FontAwesomeIcon icon={faUser}/>
                 </button>
+
             </div>
         </div>
     )
