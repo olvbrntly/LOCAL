@@ -1,6 +1,6 @@
-import { selectBusinessIds, useGetBusinessesQuery } from "./businessSlice";
-import { useSelector } from "react-redux";
-import Business from "./Business";
+import {  useGetBusinessesQuery } from "./businessSlice";
+
+import BusinessCard from "./BusinessCard";
 
 const BusinessesList = () =>{
     
@@ -24,10 +24,10 @@ const BusinessesList = () =>{
 
     if(isSuccess){
         const {ids} = businesses
-         const businessList = ids?.length ? ids.map(id => <Business key={id} businessId={id}/>) : null
+         const businessList = ids?.length ? ids.map(id => <BusinessCard key={id} businessId={id}/>) : null
 
          content = (
-            <div>{businessList}</div>
+            <div className="businessList">{businessList}</div>
         )
     }
    
