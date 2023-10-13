@@ -166,6 +166,20 @@ code {
   padding:0px 7em 0px 7em;
 }
 
+/* ---------- Contac ----------- */
+.contact{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top:2em;
+  gap:3em;
+}
+
+.contact h1{
+  text-decoration: underline;
+  font-size:50px;
+}
+
 /* ---------- Businesses ---------- */
 
 .businessList-title{
@@ -176,6 +190,6 @@ code {
   display:grid;
   margin:0px 2em 0px 2em;
   grid-template-rows: minmax(auto, 400px);
-  grid-template-columns: repeat(autofill, 1fr);
-
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
 }
