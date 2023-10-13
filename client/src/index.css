@@ -165,3 +165,17 @@ code {
 .terms p {
   padding:0px 7em 0px 7em;
 }
+
+/* ---------- Businesses ---------- */
+
+.businessList-title{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.businessList{
+  display:grid;
+  margin:0px 2em 0px 2em;
+  grid-template-rows: minmax(auto, 400px);
+  grid-template-columns: repeat(autofill, 1fr);
+
+}
