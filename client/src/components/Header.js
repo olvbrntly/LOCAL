@@ -2,6 +2,7 @@ import React from 'react'
 import '../index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import CategoriesDropdown from './headerComponents/CategoriesDropdown.js'
 
 const logo = require('./images/logo.png')
 
@@ -12,9 +13,12 @@ const Header = () =>{
                <a href='http://localhost:3000/'> <img src={logo} alt='LOCAL logo' className='logo'></img> </a>
             </div>
 
+           
             <div className='header-right'>
                 <a href='http://localhost:3000/'>Locations</a>
-                <a href='http://localhost:3000/'>Categories</a>
+    
+                <CategoriesDropdown />
+                
                 <a href='http://localhost:3000/'>Login / Sign Up</a>
                 <button className='user-button'>
                     <FontAwesomeIcon icon={faUser}/>
