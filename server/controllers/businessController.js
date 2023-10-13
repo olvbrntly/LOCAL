@@ -22,11 +22,11 @@ const getAllBusinesses = asyncHandler(async(req,res) =>{
 //@access Private
 
 const createNewBusiness = asyncHandler(async(req,res) =>{
-    const {name, description, priceRange, url, address, phoneNumber} = req.body;
+    const {name, description, tagline, url, address, phoneNumber} = req.body;
 
     //make sure required fields are filled out
-    if(!name || !description || !priceRange ){
-        return res.status(400).json({message:'fields required: name, description, priceRange'});
+    if(!name || !description || !tagline ){
+        return res.status(400).json({message:'fields required: name, description, tagline'});
     }
 
     //check for duplicate businesses
@@ -36,7 +36,7 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
         return res.status(409).json({message:'that business already exists'});
     };
 
-    const business = await Business.create({name, description, priceRange, url, address, phoneNumber });
+    const business = await Business.create({name, description, tagline, url, address, phoneNumber });
 
     if(business){ //if created
         res.status(200).json({message:'new business created'});
@@ -51,11 +51,11 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
 // //@access Private
 
 const editBusiness = asyncHandler(async(req,res) =>{
-    const {id,name, description, priceRange, url, address, phoneNumber} = req.body;
+    const {id,name, description, tagline, url, address, phoneNumber} = req.body;
   
     //make sure required fields are filled out
-    if(!name || !description || !priceRange || !id ){
-        return res.status(400).json({message:'fields required: name, description, priceRange'});
+    if(!name || !description || !tagline || !id ){
+        return res.status(400).json({message:'fields required: name, description, tagline'});
     }
 
     //Confirm business exists to update
@@ -79,7 +79,7 @@ const editBusiness = asyncHandler(async(req,res) =>{
 
     business.name = name,
     business.description = description,
-    business.priceRange = priceRange,
+    business.tagline = tagline,
     business.url = url,
     business.address = address,
     business.phoneNumber = phoneNumber
