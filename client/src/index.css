@@ -193,3 +193,13 @@ code {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
 }
+
+/* ----- Create Business Form ----- */
+
+.add-business-form{
+  margin:3em;
+}
+.add-business-form h1{
+ text-align: center;
+ margin-top: -1em;
+}
