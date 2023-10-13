@@ -6,6 +6,7 @@ import About from './components/About';
 import Terms from './components/Terms';
 import Contact from './components/Contact';
 import BusinessesList from './features/Business/BusinessesList';
+import AddBusinessForm from './features/Business/AddBusinessForm';
 
 const  App  =() => {
   return (
@@ -19,6 +20,8 @@ const  App  =() => {
           <Route path='/contact' element={<Contact/>}/>
 
           <Route path='business' element={<BusinessesList/>}/>
+          <Route path='business/create' element={<AddBusinessForm/>}/>
+
         </Routes>
       </Router>
       <Footer />
