@@ -15,7 +15,7 @@ const businessSchema = new mongoose.Schema(
             type:String,
             required:true,
         },
-        priceRange:{
+        tagline:{
             type:String,
             required:true
         },
