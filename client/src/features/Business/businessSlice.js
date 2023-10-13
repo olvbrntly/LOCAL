@@ -30,12 +30,23 @@ export const businessesSlice = apiSlice.injectEndpoints({
                     ]
                 } else return [{type:'Business', id:'LIST'}]
             }
+        }),
+        addBusiness:builder.mutation({
+            query:initialBusiness => ({
+                url:'/business',
+                method:'POST',
+                body:{
+                    ...initialBusiness
+                }
+            }),
+            invalidatesTags:['Business']
         })
     })
 });
 
 export const {
-    useGetBusinessesQuery
+    useGetBusinessesQuery,
+    useAddBusinessMutation,
 } = businessesSlice;
 
 //return query for entire result object
