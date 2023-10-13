@@ -16,7 +16,7 @@ const BusinessCard = ({businessId}) =>{
           {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" /> */}
           <Card.Body>
             <Card.Title>{business.name}</Card.Title>
-            <Card.Text> {business.priceRange}</Card.Text>
+
             <Card.Text>
                 {/* will change to a tag line */}
              {business.description.substring(0,200)} 
