@@ -52,7 +52,7 @@ const AddBusinessForm = () =>{
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridTagline">
             <Form.Label>Tag Line</Form.Label>
-            <Form.Control type="text" placeholder="Description of business in 100 characters or less" />
+            <Form.Control type="text" placeholder="Description of business in 100 characters or less" maxLength="100" />
           </Form.Group>
         </Row>
 
@@ -71,7 +71,7 @@ const AddBusinessForm = () =>{
 
         <Form.Group as={Col} controlId="formGridDescription">
             <Form.Label>Description</Form.Label>
-            <Form.Control type="textarea" placeholder="Full Description of Business" onChange={onDescriptionChanged}/>
+            <Form.Control  as="textarea" rows={3} type="text" placeholder="Full Description of Business" onChange={onDescriptionChanged}/>
           </Form.Group>
 
         <Form.Group className="mb-3" controlId="formGridAddress1">
