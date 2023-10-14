@@ -11,6 +11,9 @@ const businessSchema = new mongoose.Schema(
         address:{
             type: AddressSchema.schema
         },
+        email:{
+            type: String,
+        },
         description:{
             type:String,
             required:true,
