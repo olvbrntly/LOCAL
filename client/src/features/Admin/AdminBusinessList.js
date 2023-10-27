@@ -1,7 +1,10 @@
-import { useGetBusinessesQuery } from "./businessSlice";
-import BusinessCard from "./BusinessCard";
+import { useGetBusinessesQuery } from "../Business/businessSlice";
+import AdminBusinessCard from "./AdminBusinessCard";
+
 
 const AdminBusinessList = () =>{
+
+
     const{
         data:businesses,
         isLoading,
@@ -10,9 +13,7 @@ const AdminBusinessList = () =>{
         error
     } = useGetBusinessesQuery();
 
-    const onClicked = () =>{
-        console.log('clicked create new business')
-    }
+   
 
     let content;
     if(isLoading){
@@ -25,11 +26,11 @@ const AdminBusinessList = () =>{
 
     if(isSuccess){
         const {ids} = businesses
-         const businessList = ids?.length ? ids.map(id => <BusinessCard key={id} businessId={id}/>) : null
+         const businessList = ids?.length ? ids.map(id => <AdminBusinessCard key={id} businessId={id}/>) : null
 
          content = (
             <div>
-                <button onClick={onClicked}>Create a New Business</button>
+                <p>Sort drop down menu</p>
                 <div className="businessList">{businessList}</div>
             </div>
         )
