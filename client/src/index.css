@@ -74,6 +74,7 @@ code {
     display:flex;
     grid-row:2/3;
 
+
 }
 
 /*---------- Homepage ---------- */
@@ -208,7 +209,7 @@ code {
   display:grid;
   margin:0px 2em 0px 2em;
   grid-template-rows: repeat(auto,400px);
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
   justify-items: center;
   gap:20px;
 }
