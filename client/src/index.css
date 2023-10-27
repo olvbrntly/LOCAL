@@ -230,3 +230,8 @@ code {
  text-align: center;
  margin-top: -1em;
 }
+
+.add-business-submit-button{
+  background-color: var(--color-three);
+  color: var(--color-one);
+}
