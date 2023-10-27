@@ -124,7 +124,7 @@ const AddBusinessForm = () =>{
           </Form.Group>
         </Row>
 
-        <Button variant="primary" type="submit" >
+        <Button variant="primary" type="submit" className='add-business-submit-button'>
           Save Business
         </Button>
       </Form>
