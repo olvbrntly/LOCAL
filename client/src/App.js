@@ -7,6 +7,7 @@ import Terms from './components/Terms';
 import Contact from './components/Contact';
 import BusinessesList from './features/Business/BusinessesList';
 import AddBusinessForm from './features/Business/AddBusinessForm';
+import AdminBusinessList from './features/Business/AdminBusinessList';
 
 const  App  =() => {
   return (
@@ -20,6 +21,8 @@ const  App  =() => {
           <Route path='/contact' element={<Contact/>}/>
 
           <Route path='business' element={<BusinessesList/>}/>
+          <Route path='admin/businesses' element={<AdminBusinessList/>}/>
+
           <Route path='admin/business/create' element={<AddBusinessForm/>}/>
 
         </Routes>
