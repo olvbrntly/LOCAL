@@ -40,6 +40,11 @@ export const businessesSlice = apiSlice.injectEndpoints({
                 }
             }),
             invalidatesTags:['Business']
+        }),
+        editBusiness:builder.mutation({
+            query:initialBusiness =>({
+                
+            })
         })
     })
 });
