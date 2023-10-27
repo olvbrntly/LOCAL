@@ -78,10 +78,10 @@ code {
 .hero {
 
   background:url(./components/images/hero_img.jpg);
-  height: calc(20em + 20vw);
+  
 	background-position: center;
 	background-size: cover;
-	position: relative;
+	
 }
 
 .hero-content {
@@ -91,8 +91,9 @@ code {
     text-align:center;
     height:30%;
     width:40%;
-    padding-top:1.5em;
+    padding-top:10em;
     padding-left:5%;
+    
     
 }
 .hero-title {
@@ -106,11 +107,26 @@ code {
     margin-top:1rem;
 }
 
+#zip{
+  border-radius: 10px;
+  font-size:20px;
+  padding:10px;
+  height:50px;
+  width:250px;
+}
+
+.homepage-button{
+  border-radius: 100px;
+  width:50px;
+  height:50px;
+  font-size: 20px;;
+}
+
 
 /* ---------- FOOTER ---------- */
 
 .footer{
-  height:24px; 
+
   display:flex;
   justify-content: space-between;
   grid-row: 3/4;
