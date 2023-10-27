@@ -12,7 +12,7 @@ const BusinessCard = ({businessId}) =>{
     if(business) {
 
     return (
-        <Card style={{ width: '18rem', borderRadius:'25px' ,textAlign:"center"}}>
+        <Card style={{ width: '18rem', borderRadius:'25px' ,textAlign:"center", height:'300px'}}>
           {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" /> */}
           <Card.Body>
             <Card.Title>{business.name}</Card.Title>
