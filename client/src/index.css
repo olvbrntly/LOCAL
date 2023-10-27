@@ -78,7 +78,6 @@ code {
 .hero {
 
   background:url(./components/images/hero_img.jpg);
-  
 	background-position: center;
 	background-size: cover;
 	
@@ -91,7 +90,7 @@ code {
     text-align:center;
     height:30%;
     width:40%;
-    padding-top:10em;
+    padding-top:5em;
     padding-left:5%;
     
     
@@ -205,10 +204,13 @@ code {
 .businessList{
   display:grid;
   margin:0px 2em 0px 2em;
-  grid-template-rows: minmax(auto, 400px);
+  grid-template-rows: repeat(auto,400px);
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
+  gap:20px;
 }
+
+
 
 /* ----- Create Business Form ----- */
 
