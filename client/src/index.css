@@ -1,7 +1,9 @@
-/* #94A684
-#AEC3AE
-#E4E4D0
-#FFEEF4 */
+:root{
+  --color-one:#FAF1E4; /* bg of cards, bg of form elements */
+  --color-two:#9EB384; 
+  --color-three:#435334; /* titles aned text*/
+  --color-four:#CEDEBD; /* bg of page */
+}
 
 body {
   margin:0;
@@ -11,7 +13,8 @@ body {
     sans-serif;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  background-color:whitesmoke;
+  background-color: var(--color-four);
+  color:var(--color-three);
   overflow-x:hidden;
 }
 
@@ -49,7 +52,7 @@ code {
 }
 
 .user-button{
-  background-color:whitesmoke;
+  background-color:var(--color-four);
   border:none;
   padding:10px;
   margin-top:-50px;
@@ -210,6 +213,12 @@ code {
   gap:20px;
 }
 
+.card{
+  background-color: var(--color-one);
+  color:var(--color-three);
+  font-weight:500;
+  border:3px solid var(--color-three)
+}
 
 
 /* ----- Create Business Form ----- */
