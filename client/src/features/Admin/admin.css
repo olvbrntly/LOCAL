@@ -12,7 +12,7 @@
 }
 
 .admin-business-card button{
-    border-radius: 25px;
+    border-radius: 10px;
     background-color: var(--color-three);
     color:var(--color-one);
 }
