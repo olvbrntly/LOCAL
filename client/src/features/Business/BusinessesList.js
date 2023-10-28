@@ -27,7 +27,7 @@ const BusinessesList = () =>{
          const businessList = ids?.length ? ids.map(id => <BusinessCard key={id} businessId={id}/>) : null
 
          content = (
-            <div>
+            <div className="business-list-content">
                 <h2 className="businessList-title">All Businesses</h2>
                 <div className="businessList">{businessList}</div>
             </div>
