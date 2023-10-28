@@ -35,6 +35,7 @@ code {
   justify-content:space-between;
   padding:2em 2em 0 2em;
   grid-row:1/2;
+  background-color: var(--color-one);
 
 }
 
@@ -52,7 +53,7 @@ code {
 }
 
 .user-button{
-  background-color:var(--color-four);
+  background-color:var(--color-one);
   border:none;
   padding:10px;
   margin-top:-50px;
@@ -70,7 +71,7 @@ code {
 }
 
 .content{
-  
+    margin-top: 25px;
     display:flex;
     grid-row:2/3;
 
@@ -200,6 +201,10 @@ code {
 }
 
 /* ---------- Businesses ---------- */
+
+.business-list-content{
+margin-top:25px;
+}
 
 .businessList-title{
   text-align: center;
