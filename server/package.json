@@ -21,7 +21,8 @@
     "express-async-handler": "^1.2.0",
     "mongodb": "^6.0.0",
     "mongoose": "^7.5.0",
-    "mongoose-type-url": "^2.1.0"
+    "mongoose-type-url": "^2.1.0",
+    "url-validation": "^2.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
