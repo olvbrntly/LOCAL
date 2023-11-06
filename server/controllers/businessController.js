@@ -75,6 +75,14 @@ const editBusiness = asyncHandler(async(req,res) =>{
         return res.status(400).json({message:'No business found'})
     }
 
+    if(email && !(emailValidator.validate(email))){
+        return res.status(400).json({message: 'Please provide a valid email'})
+    }
+
+    if(url && !(isUrlValid(url))){
+        return res.status(400).json({message: 'Please provide a valid URL (example: https://helloworld.com)'})
+    }
+
     //check for duplicate business
     const duplicateBiz = await Business.findOne({name, description}).lean().exec();
 
@@ -87,12 +95,13 @@ const editBusiness = asyncHandler(async(req,res) =>{
         return res.status(409).json({ message: 'Duplicate business name and description' })
     }
 
-    business.name = name,
-    business.description = description,
-    business.tagline = tagline,
-    business.url = url,
-    business.address = address,
+    business.name = name
+    business.description = description
+    business.tagline = tagline
+    business.url = url
+    business.address = address
     business.phoneNumber = phoneNumber
+    business.email = email
 
     const updatedBusiness = await business.save(); //comes from the lean 
 
