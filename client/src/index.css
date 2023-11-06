@@ -71,7 +71,6 @@ code {
 }
 
 .content{
-    margin-top: 25px;
     display:flex;
     grid-row:2/3;
 
@@ -135,7 +134,7 @@ code {
   justify-content: space-between;
   grid-row: 3/4;
   padding:1em;
-
+  background-color: var(--color-one);
 
 }
 
@@ -158,6 +157,7 @@ code {
   display:flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 25px;
 }
 
 .about h1{
@@ -175,6 +175,7 @@ code {
   display:flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 25px;
 }
 
 .terms h1{
@@ -212,7 +213,7 @@ margin-top:25px;
 }
 .businessList{
   display:grid;
-  margin:0px 2em 0px 2em;
+  margin:0px 2em 2em 2em;
   grid-template-rows: repeat(auto,400px);
   grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
   justify-items: center;
