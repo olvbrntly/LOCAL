@@ -1,6 +1,7 @@
 const Business = require('../models/Business');
 const asyncHandler = require('express-async-handler');
-const validator = require("email-validator");
+const emailValidator = require("email-validator");
+const isUrlValid = require('url-validation');
 
 //@desc Get all businesses
 //@route GET /businesses
@@ -30,8 +31,12 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
         return res.status(400).json({message:'fields required: name, description, tagline'});
     }
 
-    if(!validator.validate(email)){
+    if(email && !(emailValidator.validate(email))){
         return res.status(400).json({message: 'Please provide a valid email'})
+    }
+
+    if(url && !(isUrlValid(url))){
+        return res.status(400).json({message: 'Please provide a valid URL (example: https://helloworld.com)'})
     }
 
     //check for duplicate businesses
