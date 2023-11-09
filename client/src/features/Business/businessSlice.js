@@ -43,8 +43,15 @@ export const businessesSlice = apiSlice.injectEndpoints({
         }),
         editBusiness:builder.mutation({
             query:initialBusiness =>({
-                
-            })
+                url:'/business',
+                method:'PATCH',
+                body:{
+                    ...initialBusiness,
+                }
+            }),
+            invalidatesTags:(result,error,arg) =>[
+                {type:'Note', id:arg.id}
+            ]
         })
     })
 });
@@ -52,6 +59,7 @@ export const businessesSlice = apiSlice.injectEndpoints({
 export const {
     useGetBusinessesQuery,
     useAddBusinessMutation,
+    useEditBusinessMutation
 } = businessesSlice;
 
 //return query for entire result object
