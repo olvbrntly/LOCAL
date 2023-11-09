@@ -51,7 +51,7 @@ const AddBusinessForm = () =>{
 
     return(
       
-      <div className="add-business-form">
+      <div className="business-form">
       <h1>Add a New Business</h1>
       <p className={errClass}>{error?.data?.message}</p>
 
@@ -124,7 +124,7 @@ const AddBusinessForm = () =>{
           </Form.Group>
         </Row>
 
-        <Button variant="primary" type="submit" className='add-business-submit-button'>
+        <Button variant="primary" type="submit" className='business-submit-button'>
           Save Business
         </Button>
       </Form>
