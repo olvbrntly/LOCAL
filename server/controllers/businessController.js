@@ -3,6 +3,15 @@ const asyncHandler = require('express-async-handler');
 const emailValidator = require("email-validator");
 const isUrlValid = require('url-validation');
 
+//Validate phone number function
+function validatePhoneNumber(input_str) {
+    var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+  
+    return re.test(input_str);
+  }
+
+
+
 //@desc Get all businesses
 //@route GET /businesses
 //@access Private
@@ -39,6 +48,10 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
         return res.status(400).json({message: 'Please provide a valid URL (example: https://helloworld.com)'})
     }
 
+    if (phoneNumber && (!validatePhoneNumber(phoneNumber))){
+        return res.status(400).json({message:'Please enter a valid 10 digit phone number'})
+    }
+
     //check for duplicate businesses
     const duplicateBiz = await Business.findOne({name, description}).lean().exec();
 
@@ -46,7 +59,14 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
         return res.status(409).json({message:'that business already exists'});
     };
 
-    const business = await Business.create({name, description, tagline, url, address, phoneNumber, email});
+    const business = await Business.create({name : name || null, 
+                                            description: description || null, 
+                                            tagline: tagline || null,
+                                            url: url || null, 
+                                            address:address || null, 
+                                            phoneNumber:phoneNumber || null, 
+                                            email: email || null});
+
 
     if(business){ //if created
         res.status(200).json({message:'new business created'});
@@ -61,11 +81,11 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
 // //@access Private
 
 const editBusiness = asyncHandler(async(req,res) =>{
-    const {id,name, description, tagline, url, address, phoneNumber} = req.body;
+    const {id,name, description, tagline, url, address, phoneNumber,email} = req.body;
   
     //make sure required fields are filled out
     if(!name || !description || !tagline || !id ){
-        return res.status(400).json({message:'fields required: name, description, tagline'});
+        return res.status(400).json({message:'fields required: name, description, tagline and id'});
     }
 
     //Confirm business exists to update
@@ -83,25 +103,25 @@ const editBusiness = asyncHandler(async(req,res) =>{
         return res.status(400).json({message: 'Please provide a valid URL (example: https://helloworld.com)'})
     }
 
-    //check for duplicate business
-    const duplicateBiz = await Business.findOne({name, description}).lean().exec();
+    if (phoneNumber && (!validatePhoneNumber(phoneNumber))){
+        return res.status(400).json({message:'Please enter a valid 10 digit phone number'})
+    }
 
-    if(duplicateBiz){
-        return res.status(409).json({message:'that business already exists'});
-    };
+    //check for duplicate business
+    const duplicateBiz = await Business.findOne({name, description, tagline}).lean().exec();
 
      // Allow renaming of the original note 
      if (duplicateBiz && duplicateBiz?._id.toString() !== id) {
         return res.status(409).json({ message: 'Duplicate business name and description' })
     }
 
-    business.name = name
-    business.description = description
-    business.tagline = tagline
-    business.url = url
-    business.address = address
-    business.phoneNumber = phoneNumber
-    business.email = email
+    business.name = name || null
+    business.description = description || null
+    business.tagline = tagline || null
+    business.url = url || null
+    business.address = address || null
+    business.phoneNumber = phoneNumber || null
+    business.email = email || null
 
     const updatedBusiness = await business.save(); //comes from the lean 
 
