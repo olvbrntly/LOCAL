@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import BusinessesList from './features/Business/BusinessesList';
 import AddBusinessForm from './features/Business/AddBusinessForm';
 import AdminBusinessList from './features/Admin/AdminBusinessList';
+import EditBusinessForm from './features/Business/EditBusinessForm';
 import AdminHome from './features/Admin/AdminHome';
 
 
@@ -33,6 +34,7 @@ const  App  =() => {
           <Route path='admin' element={<AdminHome/>}/>
           <Route path='admin/businesses' element={<AdminBusinessList/>}/>
           <Route path='admin/business/create' element={<AddBusinessForm/>}/>
+          <Route path='admin/business/edit' element={<EditBusinessForm/>}/>
 
         </Routes>
       </Router>
