@@ -230,15 +230,15 @@ margin-top:25px;
 
 /* ----- Create Business Form ----- */
 
-.add-business-form{
+.business-form{
   margin:3em;
 }
-.add-business-form h1{
+.business-form h1{
  text-align: center;
  margin-top: -1em;
 }
 
-.add-business-submit-button{
+.business-submit-button{
   background-color: var(--color-three);
   color: var(--color-one);
 }
