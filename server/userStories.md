@@ -1,7 +1,7 @@
 # User Stories for Local
 
 ADMIN
-1. [ ]Admin can create new businesses
+1. [ ] Admin can create new businesses
 2. [ ] Admin can create new business
 3. [ ] Admin can update business information
 3. [ ] Admin can delete businesses
