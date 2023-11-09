@@ -2,10 +2,16 @@ import './admin.css'
 import { selectBusinessById } from "../Business/businessSlice";
 import { useSelector} from "react-redux";
 import Card from 'react-bootstrap/Card';
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminBusinessCard = ({businessId}) =>{
+  const navigate = useNavigate();
     const business = useSelector(state => selectBusinessById(state, businessId));
+
+    const onClickEditBusiness = () =>{
+      navigate('/admin/business/edit')
+  }
+
     if(business) {
 
     return (
@@ -26,10 +32,10 @@ const AdminBusinessCard = ({businessId}) =>{
           </ListGroup> */}
           <Card.Body>
           {/* <ListGroup.Item>Categories: Grocery </ListGroup.Item> */}
-            <Card.Link href="#">Link to Business Info page </Card.Link>
+            <Card.Link >Link to Business Info page </Card.Link>
           </Card.Body>
         </Card>
-        <button>Edit Business</button>
+        <button onClick={onClickEditBusiness} >Edit Business</button>
         </div>
         
       );}else return null
