@@ -1,8 +1,8 @@
 import React from "react"
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-// import { useSelector } from "react-redux"
-import { useEditBusinessMutation } from "./businessSlice"
+import { useNavigate, useParams} from "react-router-dom"
+import { useSelector } from "react-redux"
+import { selectBusinessById, useEditBusinessMutation } from "../Business/businessSlice"
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -11,10 +11,12 @@ import Row from 'react-bootstrap/Row';
 const EditBusinessForm = () =>{
 
   const navigate = useNavigate();
+  const { id } = useParams();
+  const business = useSelector(state => selectBusinessById(state, id))
 
-    const [name, setName]= useState('');
-    const [description, setDescription] = useState('')
-    const [tagline, setTagline] = useState('')
+    const [name, setName]= useState(business.name);
+    const [description, setDescription] = useState(business.description);
+    const [tagline, setTagline] = useState(business.tagline);
 
     const [addBusiness,
           {isLoading,
@@ -59,7 +61,7 @@ const EditBusinessForm = () =>{
           <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridName">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter Business Name" onChange={onNameChanged} />
+            <Form.Control type="text" value={name} onChange={onNameChanged} />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridWebsiteURL">
