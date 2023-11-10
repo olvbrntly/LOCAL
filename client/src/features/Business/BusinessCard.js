@@ -1,35 +1,25 @@
-
 import { selectBusinessById } from "./businessSlice";
 import { useSelector} from "react-redux";
 import Card from 'react-bootstrap/Card';
-// import ListGroup from 'react-bootstrap/ListGroup';
-
-//import { useNavigate } from "react-router-dom";
-
+import "./business.css"
 
 const BusinessCard = ({businessId}) =>{
     const business = useSelector(state => selectBusinessById(state, businessId));
     if(business) {
 
     return (
-        <Card style={{ width: '18rem', borderRadius:'25px' ,textAlign:"center", height:'300px'}}>
-          {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" /> */}
-          <Card.Body>
-            <Card.Title>{business.name}</Card.Title>
-
-            <Card.Text>
-                {/* will change to a tag line */}
-             {business.description.substring(0,200)} 
-            </Card.Text>
-          </Card.Body>
-          {/* <ListGroup className="list-group-flush">
-            <ListGroup.Item>Email</ListGroup.Item>
-            <ListGroup.Item>Phone Number </ListGroup.Item>
-          </ListGroup> */}
-          <Card.Body>
-          {/* <ListGroup.Item>Categories: Grocery </ListGroup.Item> */}
-            <Card.Link href="#">Link to Business Info page </Card.Link>
-          </Card.Body>
+        <Card className="business-card">
+          
+          <Card.Img variant="top" src="holder.js/100px180?text=Image cap" className="business-card-logo"/>
+          
+          <Card.Title className="business-card-title">{business.name}</Card.Title>
+        
+          <Card.Text className="business-card-tagline">{business.tagline} </Card.Text>
+        {/* Will become address  */}
+          <Card.Text className="business-card-address"> {business.phoneNumber} </Card.Text>
+          
+          <Card.Link className="business-card-learn-more" href="#">Learn More </Card.Link>
+          
         </Card>
       );}else return null
 }
