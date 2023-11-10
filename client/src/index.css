@@ -201,31 +201,7 @@ code {
   font-size:50px;
 }
 
-/* ---------- Businesses ---------- */
 
-.business-list-content{
-margin-top:25px;
-}
-
-.businessList-title{
-  text-align: center;
-  margin-bottom: 20px;
-}
-.businessList{
-  display:grid;
-  margin:0px 2em 2em 2em;
-  grid-template-rows: repeat(auto,400px);
-  grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
-  justify-items: center;
-  gap:20px;
-}
-
-.card{
-  background-color: var(--color-one);
-  color:var(--color-three);
-  font-weight:500;
-  border:3px solid var(--color-three)
-}
 
 
 
