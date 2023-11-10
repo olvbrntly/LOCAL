@@ -228,17 +228,6 @@ margin-top:25px;
 }
 
 
-/* ----- Create Business Form ----- */
 
-.business-form{
-  margin:3em;
-}
-.business-form h1{
- text-align: center;
- margin-top: -1em;
-}
 
-.business-submit-button{
-  background-color: var(--color-three);
-  color: var(--color-one);
-}
+  
