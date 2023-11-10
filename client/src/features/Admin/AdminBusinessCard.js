@@ -9,7 +9,7 @@ const AdminBusinessCard = ({businessId}) =>{
     const business = useSelector(state => selectBusinessById(state, businessId));
 
     const onClickEditBusiness = () =>{
-      navigate('/admin/business/edit')
+      navigate(`/admin/business/${businessId}`)
   }
 
     if(business) {
