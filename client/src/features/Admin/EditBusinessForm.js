@@ -99,7 +99,7 @@ const EditBusinessForm = ({business}) =>{
 
         <Form.Group as={Col} controlId="formGridDescription">
             <Form.Label>Description</Form.Label>
-            <Form.Control  as="textarea" rows={3} type="text" placeholder="Full Description of Business" onChange={onDescriptionChanged}/>
+            <Form.Control  as="textarea" rows={3} type="text" placeholder="Full Description of Business" value={description} onChange={onDescriptionChanged}/>
           </Form.Group>
 
         <Form.Group className="mb-3" controlId="formGridAddress1">
@@ -135,7 +135,7 @@ const EditBusinessForm = ({business}) =>{
         <Button variant="primary" type="submit"  className='business-submit-button' onClick={onSaveBusinessClicked}>
           Save Business
         </Button>
-        <Button variant="primary" type="submit"  className='business-submit-button' onClick={onDeleteBusinessClicked}>
+        <Button variant="primary" type="submit"  className='business-delete-button' onClick={onDeleteBusinessClicked}>
           Delete
         </Button>
       </Form>
