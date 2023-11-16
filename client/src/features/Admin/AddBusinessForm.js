@@ -11,42 +11,42 @@ import '../Business/business.css'
 
 const AddBusinessForm = () =>{
 
+  const [addBusiness,
+        {isLoading,
+         isSuccess,
+         isError,
+         error
+            
+  }]  = useAddBusinessMutation()
+
   const navigate = useNavigate();
 
-    const [name, setName]= useState('');
-    const [description, setDescription] = useState('')
-    const [tagline, setTagline] = useState('')
+  const [name, setName]= useState('');
+  const [description, setDescription] = useState('')
+  const [tagline, setTagline] = useState('')
 
-    const [addBusiness,
-          {isLoading,
-            isSuccess,
-            isError,
-            error
-            
-    }]  = useAddBusinessMutation()
-
-    const onNameChanged = e => setName(e.target.value);
-    const onDescriptionChanged = e => setDescription(e.target.value);
-    const onTaglineChanged = e => setTagline(e.target.value);
-
-    const canSave = [name, description, tagline].every(Boolean) && !isLoading;
-
-
-    const onSaveBusinessClicked = async (e) =>{
-            e.preventDefault()
-            if(canSave){
-              await addBusiness({ name, description, tagline })
-          }
+  useEffect(() => {
+    if (isSuccess) {
+        setName('')
+        setDescription('')
+        setTagline('')
+        navigate('/business')
     }
-
-    useEffect(() => {
-      if (isSuccess) {
-          setName('')
-          setDescription('')
-          setTagline('')
-          navigate('/business')
-      }
   }, [isSuccess, navigate])
+
+  const canSave = [name, description, tagline].every(Boolean) && !isLoading;
+
+  const onNameChanged = e => setName(e.target.value);
+  const onDescriptionChanged = e => setDescription(e.target.value);
+  const onTaglineChanged = e => setTagline(e.target.value);
+
+
+  const onSaveBusinessClicked = async (e) =>{
+    e.preventDefault()
+    if(canSave){
+      await addBusiness({ name, description, tagline })
+    }
+}
 
   const errClass = isError ? "errmsg" : "offscreen"
 
