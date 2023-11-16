@@ -30,7 +30,7 @@ const AddBusinessForm = () =>{
         setName('')
         setDescription('')
         setTagline('')
-        navigate('/business')
+        navigate('/admin/business')
     }
   }, [isSuccess, navigate])
 
