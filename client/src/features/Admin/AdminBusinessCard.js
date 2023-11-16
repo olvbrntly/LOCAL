@@ -2,21 +2,35 @@ import './admin.css'
 import { selectBusinessById } from "../Business/businessSlice";
 import { useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import BusinessCard from '../Business/BusinessCard';
+// import BusinessCard from '../Business/BusinessCard';
+import Card from 'react-bootstrap/Card';
 
 const AdminBusinessCard = ({businessId}) =>{
   const navigate = useNavigate();
-    const business = useSelector(state => selectBusinessById(state, businessId));
+  const business = useSelector(state => selectBusinessById(state, businessId));
 
-    const onClickEditBusiness = () =>{
-      navigate(`/admin/business/${businessId}`)
+  const onClickEditBusiness = () =>{
+    const id = businessId
+    navigate(`/admin/business/edit/${id}`)
   }
 
     if(business) {
 
     return (
         <div className="admin-business-card">
-          <BusinessCard businessId={business.id}/>
+           <Card className="business-card">
+          
+          <Card.Img variant="top" src="holder.js/100px180?text=Image cap" className="business-card-logo"/>
+          
+          <Card.Title className="business-card-title">{business.name}</Card.Title>
+        
+          <Card.Text className="business-card-tagline">{business.tagline} </Card.Text>
+        {/* Will become address  */}
+          <Card.Text className="business-card-address"> {business.phoneNumber} </Card.Text>
+          
+          <Card.Link className="business-card-learn-more" href="#">Learn More </Card.Link>
+          
+          </Card>
 
           <button onClick={onClickEditBusiness} >Edit</button>
         </div>
