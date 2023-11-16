@@ -16,7 +16,11 @@ const addressSchema = new mongoose.Schema(
         },
         zip:{
             type:String
-        }
+        },
+        business:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Business'
+        }, 
     }
 )
 
