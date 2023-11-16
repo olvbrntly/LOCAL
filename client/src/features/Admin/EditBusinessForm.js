@@ -27,12 +27,18 @@ const EditBusinessForm = ({business}) =>{
   const [name, setName] = useState(business.name)
   const [tagline, setTagline] = useState(business.tagline)
   const [description, setDescription] = useState(business.description)
+  const [email, setEmail] = useState(business.email)
+  const [phoneNumber, setPhoneNumber] = useState(business.phoneNumber)
+  const [url, setUrl] = useState(business.url)
 
   useEffect(() =>{
     if(isSuccess || isDelSuccess){
       setName('')
       setTagline('')
       setDescription('')
+      setEmail('')
+      setPhoneNumber('')
+      setUrl('')
       navigate('/admin/businesses')
     }
   },[isSuccess, isDelSuccess, navigate])
@@ -40,6 +46,9 @@ const EditBusinessForm = ({business}) =>{
   const onNameChanged = e => setName(e.target.value);
   const onTaglineChanged = e => setTagline(e.target.value);
   const onDescriptionChanged = e => setDescription(e.target.value);
+  const onEmailChanged = e => setEmail(e.target.value)
+  const onPhoneNumberChanged = e => setEmail(e.target.value)
+  const onUrlChanged = e => setUrl(e.target.value)
 
 
   const canSave = [name, description, tagline].every(Boolean) && !isLoading;
@@ -50,7 +59,7 @@ const EditBusinessForm = ({business}) =>{
   }
 
   const onDeleteBusinessClicked = async () =>{
-    await onDeleteBusinessClicked({id:business.id})
+    await deleteBusiness({id:business.id})
   }
 
   // const errClass = (isError || isDelError) ? "errmsg" : "offscreen"
@@ -72,7 +81,7 @@ const EditBusinessForm = ({business}) =>{
 
           <Form.Group as={Col} controlId="formGridWebsiteURL">
             <Form.Label>Website Url</Form.Label>
-            <Form.Control type="url" placeholder="Website Url" />
+            <Form.Control type="url" placeholder="Website Url" value={url} onChange={onUrlChanged} />
           </Form.Group>
 
         </Row>
@@ -87,12 +96,12 @@ const EditBusinessForm = ({business}) =>{
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control type="email" placeholder="Enter email" value={email} onChange={onEmailChanged}/>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridPhoneNumber">
             <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="tel" placeholder="(555)-555-5555" />
+            <Form.Control type="tel" placeholder="(555)-555-5555" value={phoneNumber} onChange={onPhoneNumberChanged} />
           </Form.Group>
         </Row>
 
