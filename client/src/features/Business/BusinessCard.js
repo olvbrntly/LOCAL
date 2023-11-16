@@ -1,10 +1,20 @@
-import { selectBusinessById } from "./businessSlice";
+import { selectBusinessById } from "./businessSlice"
 import { useSelector} from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import "./business.css"
 
+
 const BusinessCard = ({businessId}) =>{
+  
+    const navigate = useNavigate();
+
     const business = useSelector(state => selectBusinessById(state, businessId));
+
+    const onClickLearnMore = () =>{
+      navigate(`/business/${businessId}`)
+    }
+
     if(business) {
 
     return (
@@ -18,7 +28,7 @@ const BusinessCard = ({businessId}) =>{
         {/* Will become address  */}
           <Card.Text className="business-card-address"> {business.phoneNumber} </Card.Text>
           
-          <Card.Link className="business-card-learn-more" href="#">Learn More </Card.Link>
+          <Card.Text className="business-card-learn-more" onClick={onClickLearnMore}>Learn More </Card.Text>
           
         </Card>
       );}else return null
