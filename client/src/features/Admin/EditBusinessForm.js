@@ -55,7 +55,7 @@ const EditBusinessForm = ({business}) =>{
 
 
   const onSaveBusinessClicked = async (e) =>{
-    await updateBusiness({ id:business.id, name, description, tagline })
+    await updateBusiness({ id:business.id, name, description, tagline, email, phoneNumber, url })
   }
 
   const onDeleteBusinessClicked = async () =>{
