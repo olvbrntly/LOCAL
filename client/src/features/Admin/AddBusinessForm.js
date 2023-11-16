@@ -24,13 +24,19 @@ const AddBusinessForm = () =>{
   const [name, setName]= useState('');
   const [description, setDescription] = useState('')
   const [tagline, setTagline] = useState('')
+  const [email, setEmail] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [url, setUrl] = useState('')
 
   useEffect(() => {
     if (isSuccess) {
         setName('')
         setDescription('')
         setTagline('')
-        navigate('/admin/business')
+        setEmail('')
+        setPhoneNumber('')
+        setUrl('')
+        navigate('/admin/businesses')
     }
   }, [isSuccess, navigate])
 
@@ -39,12 +45,14 @@ const AddBusinessForm = () =>{
   const onNameChanged = e => setName(e.target.value);
   const onDescriptionChanged = e => setDescription(e.target.value);
   const onTaglineChanged = e => setTagline(e.target.value);
-
+  const onEmailChanged = e => setEmail(e.target.value)
+  const onPhoneNumberChanged = e => setPhoneNumber(e.target.value)
+  const onUrlChanged = e => setUrl(e.target.value)
 
   const onSaveBusinessClicked = async (e) =>{
     e.preventDefault()
     if(canSave){
-      await addBusiness({ name, description, tagline })
+      await addBusiness({ name, description, tagline,email, phoneNumber, url })
     }
 }
 
@@ -65,7 +73,7 @@ const AddBusinessForm = () =>{
 
           <Form.Group as={Col} controlId="formGridWebsiteURL">
             <Form.Label>Website Url</Form.Label>
-            <Form.Control type="url" placeholder="Website Url" />
+            <Form.Control type="url" placeholder="Website Url" onChange={onUrlChanged} />
           </Form.Group>
 
         </Row>
@@ -80,12 +88,12 @@ const AddBusinessForm = () =>{
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control type="email" placeholder="Enter email" onChange={onEmailChanged}/>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridPhoneNumber">
             <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="tel" placeholder="(555)-555-5555" />
+            <Form.Control type="tel" placeholder="(555)-555-5555" onChange={onPhoneNumberChanged} />
           </Form.Group>
         </Row>
 
