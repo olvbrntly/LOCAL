@@ -21,8 +21,9 @@ const BusinessInfoPage = () =>{
 
            <div className="learn-more-contact">
                 <h4>Contact</h4>
-                <p>phone Number {business.phoneNumber}</p>
-                <p>email {business.email}</p>
+                <p>phone Number: {business.phoneNumber}</p>
+                <p>email: {business.email}</p>
+                <p>Url: {business.url}</p>
            </div>
 
            <div className="learn-more-address">
