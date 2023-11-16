@@ -9,7 +9,8 @@ const businessSchema = new mongoose.Schema(
             required:true
         },
         address:{
-            type: AddressSchema.schema
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Address'
         },
         email:{
             type: String,
