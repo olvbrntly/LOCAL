@@ -14,6 +14,11 @@ const AdminBusinessCard = ({businessId}) =>{
     navigate(`/admin/business/edit/${id}`)
   }
 
+  const onClickLearnMore = () =>{
+    const id = businessId
+    navigate(`/admin/business/${id}`)
+  }
+
     if(business) {
 
     return (
@@ -28,7 +33,7 @@ const AdminBusinessCard = ({businessId}) =>{
         {/* Will become address  */}
           <Card.Text className="business-card-address"> {business.phoneNumber} </Card.Text>
           
-          <Card.Link className="business-card-learn-more" href="#">Learn More </Card.Link>
+          <Card.Text className="business-card-learn-more" onClick={onClickLearnMore}>Learn More </Card.Text>
           
           </Card>
 
