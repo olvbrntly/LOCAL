@@ -13,6 +13,7 @@ import AdminBusinessList from './features/Admin/AdminBusinessList';
 import AdminHome from './features/Admin/AdminHome';
 import EditBusiness from './features/Admin/EditBusiness';
 import Prefetch from './features/auth/Prefetch';
+import BusinessInfoPage from './features/Business/BusinessInfoPage';
 
 const  App  =() => {
   return (
@@ -30,7 +31,10 @@ const  App  =() => {
           <Route path='/contact' element={<Contact/>}/>
 
         {/* User Routes */}
+        <Route element={<Prefetch />}>
           <Route path='/business' element={<BusinessesList/>}/>
+          <Route path='/business/:id' element={<BusinessInfoPage/>}/>
+        </Route>
 
         <Route element={<Prefetch />}>
         {/* Admin Routes */}
@@ -42,7 +46,7 @@ const  App  =() => {
             <Route path='business'>
             
               <Route path='create' element={<AddBusinessForm/>}/>
-              {/* <Route path=':id' element={<MoreInfoBusinessPage/>}/> */}
+              <Route path=':id' element={<BusinessInfoPage/>}/>
               <Route path='edit/:id' element={<EditBusiness/>}/>
             </Route>
         </Route>
