@@ -1,63 +1,69 @@
-import React from "react"
 import { useState, useEffect } from "react"
-import { useNavigate, useParams} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import { useSelector } from "react-redux"
-import { selectBusinessById, useEditBusinessMutation } from "../Business/businessSlice"
+import { useUpdateBusinessMutation, useDeleteBusinessMutation } from "../Business/businessSlice";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 
-const EditBusinessForm = () =>{
+const EditBusinessForm = ({business}) =>{
+
+  const [ updateBusiness, {
+    isLoading,
+    isSuccess,
+    isError,
+    error
+  }] = useUpdateBusinessMutation();
+
+  const [deleteBusiness, {
+    isSuccess: isDelSuccess,
+    isError: isDelError,
+    error:delerror,
+  }] = useDeleteBusinessMutation();
 
   const navigate = useNavigate();
-  const { id } = useParams();
-  const business = useSelector(state => selectBusinessById(state, id))
 
-    const [name, setName]= useState(business.name);
-    const [description, setDescription] = useState(business.description);
-    const [tagline, setTagline] = useState(business.tagline);
+  const [name, setName] = useState(business.name)
+  const [tagline, setTagline] = useState(business.tagline)
+  const [description, setDescription] = useState(business.description)
 
-    const [addBusiness,
-          {isLoading,
-            isSuccess,
-            isError,
-            error
-            
-    }]  = useEditBusinessMutation()
-
-    const onNameChanged = e => setName(e.target.value);
-    const onDescriptionChanged = e => setDescription(e.target.value);
-    const onTaglineChanged = e => setTagline(e.target.value);
-
-    const canSave = [name, description, tagline].every(Boolean) && !isLoading;
-
-
-    const onSaveBusinessClicked = async (e) =>{
-            e.preventDefault()
-            if(canSave){
-              await addBusiness({ name, description, tagline })
-          }
+  useEffect(() =>{
+    if(isSuccess || isDelSuccess){
+      setName('')
+      setTagline('')
+      setDescription('')
+      navigate('/admin/businesses')
     }
+  },[isSuccess, isDelSuccess, navigate])
 
-    useEffect(() => {
-      if (isSuccess) {
-          setName('')
-          setDescription('')
-          setTagline('')
-          navigate('/business')
-      }
-  }, [isSuccess, navigate])
+  const onNameChanged = e => setName(e.target.value);
+  const onTaglineChanged = e => setTagline(e.target.value);
+  const onDescriptionChanged = e => setDescription(e.target.value);
 
-  const errClass = isError ? "errmsg" : "offscreen"
+
+  const canSave = [name, description, tagline].every(Boolean) && !isLoading;
+
+
+  const onSaveBusinessClicked = async (e) =>{
+    await updateBusiness({ id:business.id, name, description, tagline })
+  }
+
+  const onDeleteBusinessClicked = async () =>{
+    await onDeleteBusinessClicked({id:business.id})
+  }
+
+  // const errClass = (isError || isDelError) ? "errmsg" : "offscreen"
+
+  const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
 
     return(
       
       <div className="business-form">
       <h1>Edit a New Business</h1>
-      <p className={errClass}>{error?.data?.message}</p>
+      <p className={'errClass'}>{errContent}</p>
 
-          <Form onSubmit={onSaveBusinessClicked}>
+          <Form onSubmit={e => e.preventDefault()}>
           <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridName">
             <Form.Label>Name</Form.Label>
@@ -74,7 +80,7 @@ const EditBusinessForm = () =>{
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridTagline">
             <Form.Label>Tag Line</Form.Label>
-            <Form.Control type="text" placeholder="Description of business in 100 characters or less" maxLength="100"  onChange={onTaglineChanged}/>
+            <Form.Control type="text" placeholder="Description of business in 100 characters or less" value={tagline}maxLength="100"  onChange={onTaglineChanged}/>
           </Form.Group>
         </Row>
 
@@ -126,8 +132,11 @@ const EditBusinessForm = () =>{
           </Form.Group>
         </Row>
 
-        <Button variant="primary" type="submit"  className='business-submit-button'>
+        <Button variant="primary" type="submit"  className='business-submit-button' onClick={onSaveBusinessClicked}>
           Save Business
+        </Button>
+        <Button variant="primary" type="submit"  className='business-submit-button' onClick={onDeleteBusinessClicked}>
+          Delete
         </Button>
       </Form>
     </div>
