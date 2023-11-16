@@ -39,9 +39,9 @@ export const businessesSlice = apiSlice.injectEndpoints({
                     ...initialBusiness
                 }
             }),
-            invalidatesTags:['Business']
+            invalidatesTags:[{type: 'Business', id:'LIST'}]
         }),
-        editBusiness:builder.mutation({
+        updateBusiness:builder.mutation({
             query:initialBusiness =>({
                 url:'/business',
                 method:'PATCH',
@@ -50,7 +50,17 @@ export const businessesSlice = apiSlice.injectEndpoints({
                 }
             }),
             invalidatesTags:(result,error,arg) =>[
-                {type:'Note', id:arg.id}
+                {type:'Business', id:arg.id}
+            ]
+        }),
+        deleteBusiness:builder.mutation({
+            query:({id}) =>({
+                url:'/business',
+                method:'DELETE',
+                body:{id}
+            }),
+            invalidatesTags:(result, error, arg) =>[
+                {type:'Business', id:arg.id}
             ]
         })
     })
@@ -59,7 +69,9 @@ export const businessesSlice = apiSlice.injectEndpoints({
 export const {
     useGetBusinessesQuery,
     useAddBusinessMutation,
-    useEditBusinessMutation
+    useUpdateBusinessMutation,
+    useDeleteBusinessMutation,
+
 } = businessesSlice;
 
 //return query for entire result object
