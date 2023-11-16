@@ -1,6 +1,7 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter as  Router, Route, Routes} from 'react-router-dom';
+import Layout from './components/Layout';
 import Homepage from './components/Homepage'
 import About from './components/About';
 import Terms from './components/Terms';
@@ -8,9 +9,10 @@ import Contact from './components/Contact';
 import BusinessesList from './features/Business/BusinessesList';
 import AddBusinessForm from './features/Admin/AddBusinessForm';
 import AdminBusinessList from './features/Admin/AdminBusinessList';
-import EditBusinessForm from './features/Admin/EditBusinessForm';
+// import EditBusinessForm from './features/Admin/EditBusinessForm';
 import AdminHome from './features/Admin/AdminHome';
-
+import EditBusiness from './features/Admin/EditBusiness';
+import Prefetch from './features/auth/Prefetch';
 
 const  App  =() => {
   return (
@@ -20,21 +22,33 @@ const  App  =() => {
         <Routes>
          
         {/* Homepage */}
-          <Route path='/' element={<Homepage/>}/>
-
+          <Route path='/' element={<Layout/>}/>
+          <Route index element={<Homepage />} />
         {/* Footer Routes */}
           <Route path='/about' element={<About/>}/>
           <Route path='/terms' element={<Terms/>}/>
           <Route path='/contact' element={<Contact/>}/>
 
         {/* User Routes */}
-          <Route path='business' element={<BusinessesList/>}/>
+          <Route path='/business' element={<BusinessesList/>}/>
 
+        <Route element={<Prefetch />}>
         {/* Admin Routes */}
-          <Route path='admin' element={<AdminHome/>}/>
-          <Route path='admin/businesses' element={<AdminBusinessList/>}/>
-          <Route path='admin/business/create' element={<AddBusinessForm/>}/>
-          <Route path='admin/business/:id' element={<EditBusinessForm/>}/>
+          <Route path='/admin'>
+
+            <Route index element={<AdminHome/>}/>
+            <Route path='businesses' element={<AdminBusinessList/>}/>
+
+            <Route path='business'>
+            
+              <Route path='create' element={<AddBusinessForm/>}/>
+              {/* <Route path=':id' element={<MoreInfoBusinessPage/>}/> */}
+              <Route path='edit/:id' element={<EditBusiness/>}/>
+            </Route>
+        </Route>
+           
+          </Route>
+      
 
         </Routes>
       </Router>
