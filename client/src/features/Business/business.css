@@ -36,12 +36,19 @@
     margin-top: -1em;
 }
     
-.business-submit-button{
+.business-submit-button, .business-delete-button{
     background-color: var(--color-three);
     color: var(--color-one);
+    border:none;
+    margin:2px;
+}
+.business-submit-button:hover, .business-delete-button:hover{
+    background-color: var(--color-two);
+    color: var(--color-three);
+    border:2px solid var(--color-three)
 }
     
-    
+/* ---------- BUSINESS CARD ----------- */
 .business-card{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -83,10 +90,39 @@
     align-self:center;
     padding-right:5px;
     color:var(--color-three);
+    text-decoration: underline;
 }
     
 .business-card-learn-more:hover{
     font-size:15px;
+    
 }
     
-      
+
+/* ----------Business Info Page ----------- */
+.business-learn-more-page{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 2fr 2fr;
+    margin: 2rem 3rem 0 3rem
+}
+
+.learn-more-name{
+    grid-column:1/4;
+    display:flex;
+    gap:25px;
+
+}
+
+.learn-name-buttons{
+    grid-column:4/5
+}
+
+.learn-more-description{
+    grid-column:1/5;
+    align-self: center;
+  
+}
+
+
+
