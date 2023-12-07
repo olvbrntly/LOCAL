@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 app.use('/', express.static(path.join(__dirname, '/public')));
 app.use('/business', require('./routes/businessRoutes'));
-app.use('/addresses', require('./routes/AddressRoutes'))
+
 
 
 app.listen(PORT,() => console.log(`Server running on port ${PORT}`));
