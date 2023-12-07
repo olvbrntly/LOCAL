@@ -30,6 +30,9 @@ const EditBusinessForm = ({business}) =>{
   const [email, setEmail] = useState(business.email)
   const [phoneNumber, setPhoneNumber] = useState(business.phoneNumber)
   const [url, setUrl] = useState(business.url)
+  const [street, setStreet] = useState(business.address.street)
+  const [city, setCity] = useState(business.address.city)
+  const [postalCode, setPostalCode] = useState(business.address.postalCode)
 
   useEffect(() =>{
     if(isSuccess || isDelSuccess){
@@ -39,6 +42,9 @@ const EditBusinessForm = ({business}) =>{
       setEmail('')
       setPhoneNumber('')
       setUrl('')
+      setStreet('')
+      setCity('')
+      setPostalCode('')
       navigate('/admin/businesses')
     }
   },[isSuccess, isDelSuccess, navigate])
@@ -49,7 +55,9 @@ const EditBusinessForm = ({business}) =>{
   const onEmailChanged = e => setEmail(e.target.value)
   const onPhoneNumberChanged = e => setPhoneNumber(e.target.value)
   const onUrlChanged = e => setUrl(e.target.value)
-
+  const onStreetChanged = e => setStreet(e.target.value)
+  const onCityChanged = e => setCity(e.target.value)
+  const onPostalCodeChanged = e => setPostalCode(e.target.value)
 
   const canSave = [name, description, tagline].every(Boolean) && !isLoading;
 
@@ -113,18 +121,14 @@ const EditBusinessForm = ({business}) =>{
 
         <Form.Group className="mb-3" controlId="formGridAddress1">
           <Form.Label>Address</Form.Label>
-          <Form.Control placeholder="1234 Main St" />
+          <Form.Control placeholder="1234 Main St"  value={street} onChange={onStreetChanged}/>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formGridAddress2">
-          <Form.Label>Address 2</Form.Label>
-          <Form.Control placeholder="Apartment, studio, or floor" />
-        </Form.Group>
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>City</Form.Label>
-            <Form.Control />
+            <Form.Control placeholder="Los Angeles" value={city} onChange={onCityChanged}/>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
@@ -137,7 +141,7 @@ const EditBusinessForm = ({business}) =>{
 
           <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Zip</Form.Label>
-            <Form.Control />
+            <Form.Control placeholder="90210" value={postalCode} onChange={onPostalCodeChanged}/>
           </Form.Group>
         </Row>
 
