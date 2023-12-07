@@ -33,7 +33,9 @@ const getAllBusinesses = asyncHandler(async(req,res) =>{
 //@access Private
 
 const createNewBusiness = asyncHandler(async(req,res) =>{
-    const {name, description, tagline, url, address, phoneNumber, email} = req.body;
+    const {name, description, tagline, url, phoneNumber, email, street, city, state, postalCode} = req.body;
+
+    
 
     //make sure required fields are filled out
     if(!name || !description || !tagline ){
@@ -62,10 +64,15 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
     const business = await Business.create({name : name || null, 
                                             description: description || null, 
                                             tagline: tagline || null,
-                                            url: url || null, 
-                                            address:address || null, 
+                                            url: url || null,  
                                             phoneNumber:phoneNumber || null, 
-                                            email: email || null});
+                                            email: email || null,
+                                            address:{
+                                                street:street || null,
+                                                city:city|| null,
+                                                state:state||null,
+                                                postalCode:postalCode || null
+                                            }});
 
 
     if(business){ //if created
