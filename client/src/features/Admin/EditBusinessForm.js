@@ -47,7 +47,7 @@ const EditBusinessForm = ({business}) =>{
   const onTaglineChanged = e => setTagline(e.target.value);
   const onDescriptionChanged = e => setDescription(e.target.value);
   const onEmailChanged = e => setEmail(e.target.value)
-  const onPhoneNumberChanged = e => setEmail(e.target.value)
+  const onPhoneNumberChanged = e => setPhoneNumber(e.target.value)
   const onUrlChanged = e => setUrl(e.target.value)
 
 
