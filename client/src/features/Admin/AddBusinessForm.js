@@ -28,6 +28,8 @@ const AddBusinessForm = () =>{
   const [phoneNumber, setPhoneNumber] = useState('')
   const [url, setUrl] = useState('')
   const [street, setStreet] = useState('')
+  const [city, setCity] = useState('')
+  const [postalCode, setPostalCode] = useState('')
 
   useEffect(() => {
     if (isSuccess) {
@@ -38,6 +40,8 @@ const AddBusinessForm = () =>{
         setPhoneNumber('')
         setUrl('')
         setStreet('')
+        setCity('')
+        setPostalCode('')
         navigate('/admin/businesses')
     }
   }, [isSuccess, navigate])
@@ -51,11 +55,13 @@ const AddBusinessForm = () =>{
   const onPhoneNumberChanged = e => setPhoneNumber(e.target.value)
   const onUrlChanged = e => setUrl(e.target.value)
   const onStreetChanged = e => setStreet(e.target.value)
+  const onCityChanged = e => setCity(e.target.value)
+  const onPostalCodeChanged = e => setPostalCode(e.target.value)
 
   const onSaveBusinessClicked = async (e) =>{
     e.preventDefault()
     if(canSave){
-      await addBusiness({ name, description, tagline,email, phoneNumber, url, street })
+      await addBusiness({ name, description, tagline,email, phoneNumber, url, street, city, postalCode })
     }
 }
 
@@ -111,15 +117,10 @@ const AddBusinessForm = () =>{
           <Form.Control placeholder="1234 Main St" onChange={onStreetChanged}/>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formGridAddress2">
-          <Form.Label>Address 2</Form.Label>
-          <Form.Control placeholder="Apartment, studio, or floor" />
-        </Form.Group>
-
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>City</Form.Label>
-            <Form.Control />
+            <Form.Control placeholder="Los Angeles" onChange={onCityChanged}/>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
@@ -132,7 +133,7 @@ const AddBusinessForm = () =>{
 
           <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Zip</Form.Label>
-            <Form.Control />
+            <Form.Control placeholder='90210' onChange={onPostalCodeChanged}/>
           </Form.Group>
         </Row>
 
