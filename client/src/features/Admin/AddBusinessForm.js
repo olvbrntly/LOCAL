@@ -27,6 +27,7 @@ const AddBusinessForm = () =>{
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [url, setUrl] = useState('')
+  const [street, setStreet] = useState('')
 
   useEffect(() => {
     if (isSuccess) {
@@ -36,6 +37,7 @@ const AddBusinessForm = () =>{
         setEmail('')
         setPhoneNumber('')
         setUrl('')
+        setStreet('')
         navigate('/admin/businesses')
     }
   }, [isSuccess, navigate])
@@ -48,11 +50,12 @@ const AddBusinessForm = () =>{
   const onEmailChanged = e => setEmail(e.target.value)
   const onPhoneNumberChanged = e => setPhoneNumber(e.target.value)
   const onUrlChanged = e => setUrl(e.target.value)
+  const onStreetChanged = e => setStreet(e.target.value)
 
   const onSaveBusinessClicked = async (e) =>{
     e.preventDefault()
     if(canSave){
-      await addBusiness({ name, description, tagline,email, phoneNumber, url })
+      await addBusiness({ name, description, tagline,email, phoneNumber, url, street })
     }
 }
 
@@ -105,7 +108,7 @@ const AddBusinessForm = () =>{
 
         <Form.Group className="mb-3" controlId="formGridAddress1">
           <Form.Label>Address</Form.Label>
-          <Form.Control placeholder="1234 Main St" />
+          <Form.Control placeholder="1234 Main St" onChange={onStreetChanged}/>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formGridAddress2">
