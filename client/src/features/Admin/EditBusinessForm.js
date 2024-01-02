@@ -32,7 +32,7 @@ const EditBusinessForm = ({business}) =>{
   const [url, setUrl] = useState(business.url)
   const [street, setStreet] = useState(business.address.street)
   const [city, setCity] = useState(business.address.city)
-  const [postalCode, setPostalCode] = useState(business.address.postalCode)
+  const [zipCode, setZipCode] = useState(business.address.zipCode)
 
   useEffect(() =>{
     if(isSuccess || isDelSuccess){
@@ -44,7 +44,7 @@ const EditBusinessForm = ({business}) =>{
       setUrl('')
       setStreet('')
       setCity('')
-      setPostalCode('')
+      setZipCode('')
       navigate('/admin/businesses')
     }
   },[isSuccess, isDelSuccess, navigate])
@@ -57,7 +57,7 @@ const EditBusinessForm = ({business}) =>{
   const onUrlChanged = e => setUrl(e.target.value)
   const onStreetChanged = e => setStreet(e.target.value)
   const onCityChanged = e => setCity(e.target.value)
-  const onPostalCodeChanged = e => setPostalCode(e.target.value)
+  const onZipCodeChanged = e => setZipCode(e.target.value)
 
   const canSave = [name, description, tagline].every(Boolean) && !isLoading;
 
@@ -141,7 +141,7 @@ const EditBusinessForm = ({business}) =>{
 
           <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Zip</Form.Label>
-            <Form.Control placeholder="90210" value={postalCode} onChange={onPostalCodeChanged}/>
+            <Form.Control placeholder="90210" value={zipCode} onChange={onZipCodeChanged}/>
           </Form.Group>
         </Row>
 
