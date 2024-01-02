@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import '../Business/business.css'
+import StateOptions from "./StateOptions";
 
 const AddBusinessForm = () =>{
 
@@ -29,7 +30,7 @@ const AddBusinessForm = () =>{
   const [url, setUrl] = useState('')
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
-  const [postalCode, setPostalCode] = useState('')
+  const [zipCode, setZipCode] = useState('')
 
   useEffect(() => {
     if (isSuccess) {
@@ -41,7 +42,7 @@ const AddBusinessForm = () =>{
         setUrl('')
         setStreet('')
         setCity('')
-        setPostalCode('')
+        setZipCode('')
         navigate('/admin/businesses')
     }
   }, [isSuccess, navigate])
@@ -56,12 +57,12 @@ const AddBusinessForm = () =>{
   const onUrlChanged = e => setUrl(e.target.value)
   const onStreetChanged = e => setStreet(e.target.value)
   const onCityChanged = e => setCity(e.target.value)
-  const onPostalCodeChanged = e => setPostalCode(e.target.value)
+  const onZipCodeChanged = e => setZipCode(e.target.value)
 
   const onSaveBusinessClicked = async (e) =>{
     e.preventDefault()
     if(canSave){
-      await addBusiness({ name, description, tagline,email, phoneNumber, url, street, city, postalCode })
+      await addBusiness({ name, description, tagline,email, phoneNumber, url, street, city, zipCode })
     }
 }
 
@@ -124,16 +125,12 @@ const AddBusinessForm = () =>{
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>State</Form.Label>
-            <Form.Select defaultValue="Choose...">
-              <option>Choose...</option>
-              <option>...</option>
-            </Form.Select>
+            <StateOptions />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Zip</Form.Label>
-            <Form.Control placeholder='90210' onChange={onPostalCodeChanged}/>
+            <Form.Control placeholder='90210' onChange={onZipCodeChanged}/>
           </Form.Group>
         </Row>
 
