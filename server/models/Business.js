@@ -12,7 +12,7 @@ const businessSchema = new mongoose.Schema(
             street:String,
             city:String,
             state:String,
-            postalCode:String,
+            zipCode:String,
         },
         email:{
             type: String,
