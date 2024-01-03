@@ -1,10 +1,14 @@
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux";
 import { selectBusinessById } from "./businessSlice";
+import Map from "./Map";
 
 const BusinessInfoPage = () =>{
     const { id } = useParams();
     const business = useSelector(state => selectBusinessById(state, id))
+
+    const address = `${business.address.street}, ${business.address.city}, ${business.address.state} ${business.address.zipCode}`
+    console.log(address)
     return(
         <div className="business-learn-more-page">
 
@@ -33,7 +37,7 @@ const BusinessInfoPage = () =>{
            </div>
 
            <div className="learn-more-map">
-                map from Google APi
+                <Map />
            </div>
         </div>
     )
