@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import StateOptions from "./StateOptions";
 
 const EditBusinessForm = ({business}) =>{
 
@@ -32,6 +33,7 @@ const EditBusinessForm = ({business}) =>{
   const [url, setUrl] = useState(business.url)
   const [street, setStreet] = useState(business.address.street)
   const [city, setCity] = useState(business.address.city)
+  const [state, setState] = useState(business.address.state)
   const [zipCode, setZipCode] = useState(business.address.zipCode)
 
   useEffect(() =>{
@@ -57,13 +59,14 @@ const EditBusinessForm = ({business}) =>{
   const onUrlChanged = e => setUrl(e.target.value)
   const onStreetChanged = e => setStreet(e.target.value)
   const onCityChanged = e => setCity(e.target.value)
+  const onStateChanged = state => setState(state)
   const onZipCodeChanged = e => setZipCode(e.target.value)
 
   const canSave = [name, description, tagline].every(Boolean) && !isLoading;
 
 
   const onSaveBusinessClicked = async (e) =>{
-    await updateBusiness({ id:business.id, name, description, tagline, email, phoneNumber, url })
+    await updateBusiness({ id:business.id, name, description, tagline,email, phoneNumber, url, street, city, state, zipCode })
   }
 
   const onDeleteBusinessClicked = async () =>{
@@ -132,11 +135,7 @@ const EditBusinessForm = ({business}) =>{
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>State</Form.Label>
-            <Form.Select defaultValue="Choose...">
-              <option>Choose...</option>
-              <option>...</option>
-            </Form.Select>
+            <StateOptions  onStateChanged={onStateChanged}/>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridZip">
