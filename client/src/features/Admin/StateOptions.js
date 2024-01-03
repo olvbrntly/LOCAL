@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 
 
 
-const StateOptions = () =>{
+const StateOptions = ({onStateChanged}) =>{
 
     const options =[
         'AL',
@@ -60,11 +60,11 @@ const StateOptions = () =>{
     return(
         <>
             <Form.Label>State</Form.Label>
-            <Form.Select defaultValue="...">
-            <option disabled selected value> -- select an option -- </option>
-            {options.map((option) =>(
-                <option key={option}>{option}</option>
-            ))}
+            <Form.Select onChange={(e) => onStateChanged(e.target.value)}>
+                <option disabled selected value> -- select an option -- </option>
+                {options.map((option) =>(
+                    <option key={option}>{option}</option>
+                ))}
             </Form.Select>
         </>
     )

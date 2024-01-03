@@ -30,6 +30,7 @@ const AddBusinessForm = () =>{
   const [url, setUrl] = useState('')
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
+  const [state, setState] = useState('')
   const [zipCode, setZipCode] = useState('')
 
   useEffect(() => {
@@ -42,6 +43,7 @@ const AddBusinessForm = () =>{
         setUrl('')
         setStreet('')
         setCity('')
+        setState('')
         setZipCode('')
         navigate('/admin/businesses')
     }
@@ -57,12 +59,13 @@ const AddBusinessForm = () =>{
   const onUrlChanged = e => setUrl(e.target.value)
   const onStreetChanged = e => setStreet(e.target.value)
   const onCityChanged = e => setCity(e.target.value)
+  const onStateChanged = state => setState(state)
   const onZipCodeChanged = e => setZipCode(e.target.value)
 
   const onSaveBusinessClicked = async (e) =>{
     e.preventDefault()
     if(canSave){
-      await addBusiness({ name, description, tagline,email, phoneNumber, url, street, city, zipCode })
+      await addBusiness({ name, description, tagline,email, phoneNumber, url, street, city, state, zipCode })
     }
 }
 
@@ -125,7 +128,7 @@ const AddBusinessForm = () =>{
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
-            <StateOptions />
+            <StateOptions  onStateChanged={onStateChanged}/>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridZip">
