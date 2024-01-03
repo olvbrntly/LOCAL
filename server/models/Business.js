@@ -32,6 +32,12 @@ const businessSchema = new mongoose.Schema(
             type: String,
             //match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/, // FORMATS: (123) 456-7890 or 123-456-7890
         },
+        latitude:{
+            type:Number
+        },
+        longitude:{
+            type:Number
+        }
 
     }
 )
