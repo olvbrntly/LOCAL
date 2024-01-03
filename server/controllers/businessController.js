@@ -3,6 +3,8 @@ const asyncHandler = require('express-async-handler');
 const emailValidator = require("email-validator");
 const isUrlValid = require('url-validation');
 
+const axios = require('axios')
+
 //Validate phone number function
 function validatePhoneNumber(input_str) {
     var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
@@ -10,6 +12,32 @@ function validatePhoneNumber(input_str) {
     return re.test(input_str);
   }
 
+
+  const getLatLngFromAddress = async (address, apiKey) => {
+    // Construct the URL for the Geocoding API request
+    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+  
+    try {
+      // Make the Geocoding API request
+      const response = await axios.get(geocodingUrl);
+      const data = response.data;
+  
+      // Check if the response is successful and contains results
+      if (data.status === 'OK' && data.results.length > 0) {
+        const location = data.results[0].geometry.location;
+        const latitude = location.lat;
+        const longitude = location.lng;
+        
+        // Return an object with latitude and longitude
+        return { latitude, longitude };
+      } else {
+        throw new Error('Geocoding request failed. Check your address or API key.');
+      }
+    } catch (error) {
+      // Handle errors, e.g., network issues or invalid responses
+      throw new Error(`Error: ${error.message}`);
+    }
+}
 
 
 //@desc Get all businesses
@@ -61,25 +89,35 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
         return res.status(409).json({message:'that business already exists'});
     };
 
-    const business = await Business.create({name : name || null, 
-                                            description: description || null, 
-                                            tagline: tagline || null,
-                                            url: url || null,  
-                                            phoneNumber:phoneNumber || null, 
-                                            email: email || null,
-                                            address:{
-                                                street:street || null,
-                                                city:city|| null,
-                                                state:state||null,
-                                                zipCode:zipCode || null
-                                            }});
+    const address = `${street}, ${city}, ${state} ${zipCode}`
+    console.log(address)
 
+    // Call the function and log the result
+    try{
+        const { latitude, longitude} = await getLatLngFromAddress(address, process.env.GM_API_KEY)
+        console.log(latitude, longitude)
 
-    if(business){ //if created
-        res.status(200).json({message:'new business created'});
-    }else{
-        res.status(400).json({message:'invalid business data recieved'});
+        const business = await Business.create({name : name || null, 
+            description: description || null, 
+            tagline: tagline || null,
+            url: url || null,  
+            phoneNumber:phoneNumber || null, 
+            email: email || null,
+            latitude:latitude,
+            longitude:longitude,
+            address:{
+                street:street || null,
+                city:city|| null,
+                state:state||null,
+                zipCode:zipCode || null
+            }});
+            res.status(200).json({message:'new business created'});
+
+    }catch(error) {
+        console.lerror(error.message)
+        res.status(400).json({message:'invalid business data recieved / inalid address recieved'});
     }
+  
 });
 
 
