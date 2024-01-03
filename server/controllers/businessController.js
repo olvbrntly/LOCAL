@@ -33,7 +33,7 @@ const getAllBusinesses = asyncHandler(async(req,res) =>{
 //@access Private
 
 const createNewBusiness = asyncHandler(async(req,res) =>{
-    const {name, description, tagline, url, phoneNumber, email, street, city, state, postalCode} = req.body;
+    const {name, description, tagline, url, phoneNumber, email, street, city, state, zipCode} = req.body;
 
     
 
@@ -71,7 +71,7 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
                                                 street:street || null,
                                                 city:city|| null,
                                                 state:state||null,
-                                                postalCode:postalCode || null
+                                                zipCode:zipCode || null
                                             }});
 
 
