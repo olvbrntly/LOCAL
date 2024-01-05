@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux";
 import { selectBusinessById } from "./businessSlice";
-import Map from "./Map";
+import MapComponent from "./Map";
 
 const BusinessInfoPage = () =>{
     const { id } = useParams();
@@ -13,7 +13,7 @@ const BusinessInfoPage = () =>{
         <div className="business-learn-more-page">
 
         <div className="learn-more-name">
-           <div className="learn-more-logo">LOGO</div>
+           <div className="learn-more-logo"></div>
            <h1>{business.name}</h1>
         </div>
            <div className="learn-more-buttons">
@@ -25,19 +25,19 @@ const BusinessInfoPage = () =>{
 
            <div className="learn-more-contact">
                 <h4>Contact</h4>
-                <p>phone Number: {business.phoneNumber}</p>
-                <p>email: {business.email}</p>
-                <p>Url: {business.url}</p>
+                <p>{business.phoneNumber}</p>
+                <p>{business.email}</p>
+                <p>{business.url}</p>
            </div>
 
            <div className="learn-more-address">
                 <h4>Address</h4>
-                <p>address top</p>
-                <p>address bottom</p>
+                <p>{business.address.street}</p>
+                <p>{business.address.city}, {business.address.state}, {business.address.zipCode}</p>
            </div>
 
            <div className="learn-more-map">
-                <Map />
+                <MapComponent lat={business.latitude} lng={business.longitude}/>
            </div>
         </div>
     )
