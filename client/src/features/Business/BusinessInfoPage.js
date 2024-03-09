@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux";
 import { selectBusinessById } from "./businessSlice";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faCirclePlus} from '@fortawesome/free-regular-svg-icons'
 import MapComponent from "./Map";
 
 const BusinessInfoPage = () =>{
@@ -17,8 +19,7 @@ const BusinessInfoPage = () =>{
            <h1>{business.name}</h1>
         </div>
            <div className="learn-more-buttons">
-                <button>add</button>
-                <button>heart</button>
+                <button><FontAwesomeIcon icon={faHeart} /></button>
            </div>
 
            <p className="learn-more-description">{business.description}</p>
