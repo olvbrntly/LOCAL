@@ -9,6 +9,8 @@ const Footer = () => {
                 <a href='http://localhost:3000/about'>About</a>
                 <a href='http://localhost:3000/contact'>Contact</a>
                 <a href='http://localhost:3000/terms'>Terms and Conditions</a>
+                <a href='http://localhost:3000/admin'>Admin</a>
+
             </div>
             <div className='social-media-links'>
                 <FontAwesomeIcon icon={faInstagram} />
