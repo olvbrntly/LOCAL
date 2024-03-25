@@ -20,7 +20,7 @@ const BusinessCard = ({businessId}) =>{
     return (
         <Card className="business-card">
           
-          <Card.Img variant="top" src="holder.js/100px180?text=Image cap" className="business-card-logo"/>
+          {/* <Card.Img variant="top" src="holder.js/100px180?text=Image cap" className="business-card-logo"/> */}
           
           <Card.Title className="business-card-title">{business.name}</Card.Title>
         
