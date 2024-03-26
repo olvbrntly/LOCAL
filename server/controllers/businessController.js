@@ -56,15 +56,16 @@ const getAllBusinesses = asyncHandler(async(req,res) =>{
     res.json(businesses);
 });
 
-//Get all businesses that have the given zipcode
-const getBusinessesByZip = asyncHandler(async(req,res) =>{
-    const {zipCode} = req.query;
-    const businesses = await Business.find({address:{zipCode}}).lean().exec();
-    //check if there are any businesses
-    if(!businesses.length){
-        return res.status(400).json({message:'no businesses found'});
-    };
-    //returns businesses in json format
+const getBusinessesByZip = asyncHandler(async (req, res) => {
+    const { zipCode } = req.params; // Use req.params to access route parameters
+    const businesses = await Business.find({ 'address.zipCode': zipCode }).lean().exec();
+    
+    // Check if there are any businesses
+    if (!businesses.length) {
+        return res.status(400).json({ message: 'no businesses found' });
+    }
+    
+    // Return businesses in JSON format
     res.json(businesses);
 });
 
