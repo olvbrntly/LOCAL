@@ -56,6 +56,19 @@ const getAllBusinesses = asyncHandler(async(req,res) =>{
     res.json(businesses);
 });
 
+//Get all businesses that have the given zipcode
+const getBusinessesByZip = asyncHandler(async(req,res) =>{
+    const {zipCode} = req.query;
+    const businesses = await Business.find({address:{zipCode}}).lean().exec();
+    //check if there are any businesses
+    if(!businesses.length){
+        return res.status(400).json({message:'no businesses found'});
+    };
+    //returns businesses in json format
+    res.json(businesses);
+});
+
+
 //@desc Create a new business
 //@route POST /businesses
 //@access Private
@@ -114,7 +127,7 @@ const createNewBusiness = asyncHandler(async(req,res) =>{
             res.status(200).json({message:'new business created'});
 
     }catch(error) {
-        console.lerror(error.message)
+        console.error(error.message)
         res.status(400).json({message:'invalid business data recieved / inalid address recieved'});
     }
   
@@ -203,6 +216,7 @@ const deleteBusiness = asyncHandler(async(req,res) =>{
 
 module.exports = {
     getAllBusinesses,
+    getBusinessesByZip,
     createNewBusiness,
     editBusiness,
     deleteBusiness
