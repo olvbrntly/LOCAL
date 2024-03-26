@@ -14,6 +14,7 @@ import AdminHome from './features/Admin/AdminHome';
 import EditBusiness from './features/Admin/EditBusiness';
 import Prefetch from './features/auth/Prefetch';
 import BusinessInfoPage from './features/Business/BusinessInfoPage';
+import BusinessListByZip from './features/Business/BusinessListByZip';
 
 const  App  =() => {
   return (
@@ -34,6 +35,8 @@ const  App  =() => {
         <Route element={<Prefetch />}>
           <Route path='/business' element={<BusinessesList/>}/>
           <Route path='/business/:id' element={<BusinessInfoPage/>}/>
+          <Route path='/business/zipcode/:zipCode' element={<BusinessListByZip/>}/>
+     
         </Route>
 
         <Route element={<Prefetch />}>
@@ -48,6 +51,7 @@ const  App  =() => {
               <Route path='create' element={<AddBusinessForm/>}/>
               <Route path=':id' element={<BusinessInfoPage/>}/>
               <Route path='edit/:id' element={<EditBusiness/>}/>
+              
             </Route>
         </Route>
            
