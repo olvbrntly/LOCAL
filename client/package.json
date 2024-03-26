@@ -12,6 +12,7 @@
     "@react-google-maps/api": "^2.19.2",
     "@reduxjs/toolkit": "^1.9.7",
     "cra-template": "1.2.0",
+    "gestalt": "^146.5.10",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
     "react-dom": "^18.2.0",
