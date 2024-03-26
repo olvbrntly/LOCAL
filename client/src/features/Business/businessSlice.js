@@ -31,6 +31,20 @@ export const businessesSlice = apiSlice.injectEndpoints({
                 } else return [{type:'Business', id:'LIST'}]
             }
         }),
+        getBusinessesByZip: builder.query({
+            query: (zipCode) => `/business/zipcode/${zipCode}`,
+            validateStatus:(response, result) =>{
+                return response.status === 200 && !result.isError
+            },
+            transformResponse:responseData =>{
+                const loadedBusinesses = responseData.map(business =>{
+                    business.id = business._id
+                    return business
+                });
+                return businessesAdapters.setAll(initialState, loadedBusinesses)
+            }
+            //help add any necessary transformations or validations here
+        }),
         addBusiness:builder.mutation({
             query:initialBusiness => ({
                 url:'/business',
@@ -71,7 +85,7 @@ export const {
     useAddBusinessMutation,
     useUpdateBusinessMutation,
     useDeleteBusinessMutation,
-
+    useGetBusinessesByZipQuery,
 } = businessesSlice;
 
 //return query for entire result object
@@ -82,10 +96,19 @@ const selectBusinessesData = createSelector(
     businessesResult => businessesResult.data // normalized state object with ids and entities
 )
 
+export const selectBusinessesByZipCode = createSelector(
+    selectBusinessesData,
+    (businessesData) => (zipCode) => {
+        return businessesData.filter((business) => business.zipCode === zipCode);
+    }
+);
+
+
 export const {
     selectAll:selectAllBusinesses,
     selectIds: selectBusinessIds,
     selectById:selectBusinessById,
+
 } = businessesAdapters.getSelectors(state => selectBusinessesData(state) ?? initialState)
 
 export default businessesSlice.reducer
